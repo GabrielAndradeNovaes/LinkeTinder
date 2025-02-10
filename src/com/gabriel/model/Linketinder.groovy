@@ -19,7 +19,6 @@ class Linketinder {
         candidatos.add(new Candidato(nome: "Lucas", email: "lucas@email.com", cpf: "334.455.667-88", idade: 32, estado: "BA", cep: "05000-000", competencias: ["C#", "ASP.NET"]))
     }
 
-    // Método para inicializar empresas
     private void inicializarEmpresas() {
         empresas.add(new Empresa(nome: "TechCorp", emailCorporativo: "contato@techcorp.com", cnpj: "12.345.678/0001-99", pais: "Brasil", estado: "SP", cep: "06000-000", competencias: ["Java", "Spring", "AWS"]))
         empresas.add(new Empresa(nome: "DevSolutions", emailCorporativo: "contato@devsolutions.com", cnpj: "23.456.789/0001-88", pais: "Brasil", estado: "RJ", cep: "07000-000", competencias: ["Python", "Flask", "Kubernetes"]))

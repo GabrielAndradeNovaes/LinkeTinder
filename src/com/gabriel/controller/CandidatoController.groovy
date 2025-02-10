@@ -19,7 +19,7 @@ class CandidatoController {
     }
 
     void adicionarCandidato() {
-        scanner.nextLine() // Consumir quebra de linha pendente
+        scanner.nextLine()
         println("Adicionar novo candidato:")
 
         print("Nome: ")
@@ -33,7 +33,7 @@ class CandidatoController {
 
         print("Idade: ")
         int idade = scanner.nextInt()
-        scanner.nextLine() // Consumir quebra de linha pendente
+        scanner.nextLine()
 
         print("Estado: ")
         String estado = scanner.nextLine()
@@ -41,11 +41,10 @@ class CandidatoController {
         print("CEP: ")
         String cep = scanner.nextLine()
 
-        // Capturando competências
         List<String> competencias = []
         print("Quantas competências deseja adicionar? ")
         int qtdCompetencias = scanner.nextInt()
-        scanner.nextLine() // Consumir quebra de linha pendente
+        scanner.nextLine()
 
         for (int i = 1; i <= qtdCompetencias; i++) {
             print("Digite a competência ${i}: ")
