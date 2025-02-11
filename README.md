@@ -40,6 +40,7 @@ O sistema foi projetado para gerenciar candidatos e empresas, com funcionalidade
 ## Tecnologias utilizadas
 - **Groovy**: Linguagem de programação utilizada para o desenvolvimento do sistema.
 - **Scanner**: Utilizado para capturar entradas do usuário no terminal.
+- **Spock Framework**: Utilizado para criação de testes automatizados.
 
 ## Como Executar o Projeto
 
