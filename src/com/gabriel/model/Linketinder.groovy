@@ -1,4 +1,6 @@
 package com.gabriel.model
+import java.util.List
+
 
 class Linketinder {
 
