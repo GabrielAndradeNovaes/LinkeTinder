@@ -1,3 +1,32 @@
+var Validator = /** @class */ (function () {
+    function Validator() {
+    }
+    Validator.isValidName = function (name) {
+        return /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/.test(name);
+    };
+    Validator.isValidEmail = function (email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    };
+    Validator.isValidCPF = function (cpf) {
+        return /^\d{3}\.\d{3}\.\d{3}-\d{2}$|^\d{11}$/.test(cpf);
+    };
+    Validator.isValidCNPJ = function (cnpj) {
+        return /^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$|^\d{14}$/.test(cnpj);
+    };
+    Validator.isValidPhone = function (phone) {
+        return /^\(?\d{2}\)?[\s-]?\d{4,5}-?\d{4}$/.test(phone);
+    };
+    Validator.isValidLinkedIn = function (url) {
+        return /^(https?:\/\/)?(www\.)?linkedin\.com\/in\/[a-zA-Z0-9-_]+\/?$/.test(url);
+    };
+    Validator.isValidCEP = function (cep) {
+        return /^\d{5}-?\d{3}$/.test(cep);
+    };
+    Validator.isValidTags = function (tags) {
+        return tags.every(function (tag) { return /^[A-Za-zÀ-ÖØ-öø-ÿ0-9\s]+$/.test(tag); });
+    };
+    return Validator;
+}());
 var candidatos = [];
 var empresas = [];
 document.addEventListener('DOMContentLoaded', function () {
@@ -8,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
     }
     (_a = document.getElementById('cadastro-candidato')) === null || _a === void 0 ? void 0 : _a.addEventListener('click', function () {
-        conteudo.innerHTML = "\n            <h2>Cadastro de Candidato</h2>\n            <form id=\"form-candidato\" class=\"cadastro-form\">\n                <label for=\"nome\">Nome:</label>\n                <input type=\"text\" id=\"nome\" required>\n                <label for=\"email\">Email:</label>\n                <input type=\"email\" id=\"email\" required>\n                <label for=\"cpf\">CPF:</label>\n                <input type=\"text\" id=\"cpf\" required>\n                <label for=\"idade\">Idade:</label>\n                <input type=\"number\" id=\"idade\" required>\n                <label for=\"estado\">Estado:</label>\n                <input type=\"text\" id=\"estado\" required>\n                <label for=\"cep\">CEP:</label>\n                <input type=\"text\" id=\"cep\" required>\n                <label for=\"competencias\">Compet\u00EAncias (separadas por v\u00EDrgula):</label>\n                <textarea id=\"competencias\" required></textarea>\n                <button type=\"submit\">Cadastrar</button>\n            </form>\n        ";
+        conteudo.innerHTML = "\n            <h2>Cadastro de Candidato</h2>\n            <form id=\"form-candidato\" class=\"cadastro-form\">\n                <label for=\"nome\">Nome:</label>\n                <input type=\"text\" id=\"nome\" required>\n                <label for=\"email\">Email:</label>\n                <input type=\"email\" id=\"email\" required>\n                <label for=\"cpf\">CPF:</label>\n                <input type=\"text\" id=\"cpf\" required>\n                <label for=\"idade\">Idade:</label>\n                <input type=\"number\" id=\"idade\" required>\n                <label for=\"estado\">Estado:</label>\n                <input type=\"text\" id=\"estado\" required>\n                <label for=\"cep\">CEP:</label>\n                <input type=\"text\" id=\"cep\" required>\n                <label for=\"telefone\">Telefone:</label>\n                <input type=\"text\" id=\"telefone\" required>\n                <label for=\"linkedin\">Linkedin:</label>\n                <input type=\"text\" id=\"linkedin\" required>\n                <label for=\"competencias\">Compet\u00EAncias (separadas por v\u00EDrgula):</label>\n                <textarea id=\"competencias\" required></textarea>\n                <button type=\"submit\">Cadastrar</button>\n            </form>\n        ";
         var formCandidato = document.getElementById('form-candidato');
         if (formCandidato) {
             formCandidato.addEventListener('submit', function (event) {
@@ -19,8 +48,25 @@ document.addEventListener('DOMContentLoaded', function () {
                 var idade = parseInt(document.getElementById('idade').value);
                 var estado = document.getElementById('estado').value;
                 var cep = document.getElementById('cep').value;
+                var telefone = document.getElementById('telefone').value;
+                var linkedin = document.getElementById('linkedin').value;
                 var competencias = document.getElementById('competencias').value.split(',').map(function (s) { return s.trim(); });
-                candidatos.push({ nome: nome, email: email, cpf: cpf, idade: idade, estado: estado, cep: cep, competencias: competencias });
+                if (!Validator.isValidName(nome))
+                    return alert('Nome inválido!');
+                if (!Validator.isValidEmail(email))
+                    return alert('E-mail inválido!');
+                if (!Validator.isValidCPF(cpf))
+                    return alert('CPF inválido!');
+                if (!Validator.isValidCEP(cep))
+                    return alert('CEP inválido!');
+                if (!Validator.isValidPhone(telefone))
+                    return alert('Telefone invalido');
+                if (!Validator.isValidLinkedIn(linkedin))
+                    return alert('Link invalido');
+                if (!Validator.isValidTags(competencias))
+                    return alert('Competências inválidas!');
+                alert('Candidato cadastrado com sucesso!');
+                candidatos.push({ nome: nome, email: email, cpf: cpf, idade: idade, estado: estado, cep: cep, telefone: telefone, linkedin: linkedin, competencias: competencias });
                 alert('Candidato cadastrado com sucesso!');
                 conteudo.innerHTML = '';
             });
@@ -42,6 +88,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 var estado = document.getElementById('estado').value;
                 var cep = document.getElementById('cep').value;
                 var competencias = document.getElementById('competencias').value.split(',').map(function (s) { return s.trim(); });
+                if (!Validator.isValidName(nome))
+                    return alert('Nome inválido!');
+                if (!Validator.isValidEmail(emailCorporativo))
+                    return alert('E-mail inválido!');
+                if (!Validator.isValidCNPJ(cnpj))
+                    return alert('CNPJ inválido!');
+                if (!Validator.isValidCEP(cep))
+                    return alert('CEP inválido!');
+                if (!Validator.isValidTags(competencias))
+                    return alert('Competências inválidas!');
+                alert('Empresa cadastrada com sucesso!');
                 empresas.push({ nome: nome, emailCorporativo: emailCorporativo, cnpj: cnpj, pais: pais, estado: estado, cep: cep, competencias: competencias });
                 alert('Empresa cadastrada com sucesso!');
                 conteudo.innerHTML = '';
