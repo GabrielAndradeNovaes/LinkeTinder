@@ -57,3 +57,5 @@ O sistema foi projetado para gerenciar candidatos e empresas, com funcionalidade
 3. Compile e execute o projeto com o Groovy:
    ```bash
    groovy com/gabriel/Main.groovy
+
+![Imagem da modelagem de dados](./frontend/modelagem.png)

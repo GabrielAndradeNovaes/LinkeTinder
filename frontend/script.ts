@@ -21,37 +21,37 @@ interface Empresa {
 }
 
 class Validator {
-        static isValidName(name: string): boolean {
-            return /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/.test(name);
-        }
+         static isValidName(name: string): boolean {
+            return /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/.test(name);
+         }
     
-        static isValidEmail(email: string): boolean {
-            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-        }
+         static isValidEmail(email: string): boolean {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+         }
     
-        static isValidCPF(cpf: string): boolean {
-            return /^\d{3}\.\d{3}\.\d{3}-\d{2}$|^\d{11}$/.test(cpf);
-        }
+         static isValidCPF(cpf: string): boolean {
+            return /^\d{3}\.\d{3}\.\d{3}-\d{2}$|^\d{11}$/.test(cpf);
+         }
     
-        static isValidCNPJ(cnpj: string): boolean {
-            return /^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$|^\d{14}$/.test(cnpj);
-        }
+         static isValidCNPJ(cnpj: string): boolean {
+            return /^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$|^\d{14}$/.test(cnpj);
+         }
     
-        static isValidPhone(phone: string): boolean {
-            return /^\(?\d{2}\)?[\s-]?\d{4,5}-?\d{4}$/.test(phone);
-        }
+         static isValidPhone(phone: string): boolean {
+            return /^\(?\d{2}\)?[\s-]?\d{4,5}-?\d{4}$/.test(phone);
+         }
     
-        static isValidLinkedIn(url: string): boolean {
-            return /^(https?:\/\/)?(www\.)?linkedin\.com\/in\/[a-zA-Z0-9-_]+\/?$/.test(url);
-        }
+         static isValidLinkedIn(url: string): boolean {
+            return /^(https?:\/\/)?(www\.)?linkedin\.com\/in\/[a-zA-Z0-9-_]+\/?$/.test(url);
+         }
     
-        static isValidCEP(cep: string): boolean {
-            return /^\d{5}-?\d{3}$/.test(cep);
-        }
+         static isValidCEP(cep: string): boolean {
+            return /^\d{5}-?\d{3}$/.test(cep);
+         }
     
-        static isValidTags(tags: string[]): boolean {
-            return tags.every(tag => /^[A-Za-zÀ-ÖØ-öø-ÿ0-9\s]+$/.test(tag));
-        }
+         static isValidTags(tags: string[]): boolean {
+            return tags.every(tag => /^[A-Za-zÀ-ÖØ-öø-ÿ0-9\s]+$/.test(tag));
+         }
     }
 
 let candidatos: Candidato[] = [];
@@ -106,14 +106,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 const competencias = (document.getElementById('competencias') as HTMLTextAreaElement).value.split(',').map(s => s.trim());
 
                 if (!Validator.isValidName(nome)) return alert('Nome inválido!');
-                if (!Validator.isValidEmail(email)) return alert('E-mail inválido!');
-                if (!Validator.isValidCPF(cpf)) return alert('CPF inválido!');
-                if (!Validator.isValidCEP(cep)) return alert('CEP inválido!');
+                if (!Validator.isValidEmail(email)) return alert('E-mail inválido!');
+                if (!Validator.isValidCPF(cpf)) return alert('CPF inválido!');
+                if (!Validator.isValidCEP(cep)) return alert('CEP inválido!');
                 if (!Validator.isValidPhone(telefone)) return alert ('Telefone invalido');
                 if (!Validator.isValidLinkedIn(linkedin)) return alert ('Link invalido');
-                if (!Validator.isValidTags(competencias)) return alert('Competências inválidas!');
+                if (!Validator.isValidTags(competencias)) return alert('Competências inválidas!');
 
-                alert('Candidato cadastrado com sucesso!');
+                alert('Candidato cadastrado com sucesso!');
 
                 candidatos.push({ nome, email, cpf, idade, estado, cep, telefone, linkedin, competencias });
                 alert('Candidato cadastrado com sucesso!');
@@ -159,12 +159,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 const competencias = (document.getElementById('competencias') as HTMLTextAreaElement).value.split(',').map(s => s.trim());
 
                 if (!Validator.isValidName(nome)) return alert('Nome inválido!');
-                if (!Validator.isValidEmail(emailCorporativo)) return alert('E-mail inválido!');
-                if (!Validator.isValidCNPJ(cnpj)) return alert('CNPJ inválido!');
-                if (!Validator.isValidCEP(cep)) return alert('CEP inválido!');
-                if (!Validator.isValidTags(competencias)) return alert('Competências inválidas!');
+                if (!Validator.isValidEmail(emailCorporativo)) return alert('E-mail inválido!');
+                if (!Validator.isValidCNPJ(cnpj)) return alert('CNPJ inválido!');
+                if (!Validator.isValidCEP(cep)) return alert('CEP inválido!');
+                if (!Validator.isValidTags(competencias)) return alert('Competências inválidas!');
 
-                alert('Empresa cadastrada com sucesso!');
+                alert('Empresa cadastrada com sucesso!');
 
                 empresas.push({ nome, emailCorporativo, cnpj, pais, estado, cep, competencias });
                 alert('Empresa cadastrada com sucesso!');
@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 `).join('')}
 
                 <h2>Gráfico de Candidatos por Skill</h2>
-                <div class="grafico-barras">
+                <div class="grafico-barras" id="grafico-competencias">
                     ${gerarGraficoSkills()}
                 </div>
             `;
